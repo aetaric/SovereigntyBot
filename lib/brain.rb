@@ -4,7 +4,7 @@ require 'json'
 require 'active_support'
 
 class Brain
-  attr_accessor :users, :channels, :plugins, :bot, :config, :twitch, :mongo
+  attr_accessor :users, :channels, :plugins, :bot, :config, :twitch, :mongo, :google
   
   def initialize
     @redis = Redis.new :db => 1
@@ -14,6 +14,7 @@ class Brain
     @channels = JSON.load(@redis.get("channels"))
     @twitch = JSON.load(@redis.get("twitch"))
     @mongo = JSON.load(@redis.get("mongo"))
+    @google = JSON.load(@redis.get("google"))
     if @redis.get "config"
       if @redis.get("config").to_i == 1
         @config = true
@@ -31,6 +32,7 @@ class Brain
       @redis.set "channels", @channels.to_json
       @redis.set "twitch", @twitch.to_json
       @redis.set "mongo", @mongo.to_json
+      @redis.set "google",@google.to_json
       @redis.set "config", 1
     end
   end
@@ -43,6 +45,7 @@ class Brain
     @channels = JSON.load(@redis.get("channels"))
     @twitch = JSON.load(@redis.get("twitch"))
     @mongo = JSON.load(@redis.get("mongo"))
+    @google = JSON.load(@redis.get("google"))
     @config = true
   end
 

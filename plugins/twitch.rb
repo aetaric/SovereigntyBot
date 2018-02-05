@@ -12,9 +12,8 @@ class Twitch
   match /follow (.+)/, method: :follow
   match /source/, method: :source
   match /host (.+)/, method: :host
-  match /synthesis/, method: :synthesis
-  match /commands/, methods: :commands
-  match /kill Geoff/i, methods: :no
+  match /sovst/, method: :sovst
+#  match /commands/, methods: :commands
 
   def follow(m, plug)
     if mod?(m) 
@@ -22,13 +21,9 @@ class Twitch
     end
   end
 
-  def no(m)
-    m.reply ".timeout m.user 60 How about no..."
-  end
-
   def source(m)
     m.reply ".w #{m.user} I'm written in Ruby and my developer accepts pull reqs that resolve active issues or feature requests."
-    m.reply ".w #{m.user} You can find my source code here: https://github.com/aetaric/synthesisbot ."
+#    m.reply ".w #{m.user} You can find my source code here: https://github.com/aetaric/synthesisbot ."
   end
 
   def host(m, target)
@@ -37,8 +32,8 @@ class Twitch
     end
   end
 
-  def synthesis(m)
-    m.reply "synthesis is a team: https://www.twitch.tv/team/synthesis  Twitter: https://twitter.com/synthesistwitch"
+  def sovst(m)
+    m.reply "Want more awesome streams to watch? Check out the other members of The Sovereignty Stream Team! https://www.twitch.tv/team/thesovereignty"
   end
 
   def commands(m)

@@ -98,7 +98,7 @@ class CommandPlugin
     if permission_check(m,65)
       m.reply "Good bye cruel world!"
       $brain.save
-      @bot.exit
+      $bot.exit
     end
   end
 

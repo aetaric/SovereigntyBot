@@ -83,8 +83,13 @@ class TwitchHost
           u["game"] = user["game"]
           u["name"] = user["name"]
           $team_chans.push u
+          #$brain.channels.push u
         end
       end
+      #u = {}
+      #u["name"] = "sovereigntybot"
+      #$brain.channels.push u
+      #$brain.save
     end
     pull_live
   end
@@ -117,7 +122,7 @@ class TwitchHost
           $live_chans.push user["channel"]["display_name"].downcase
         end
       end
-      Channel("#synthesisbot").send "Live Channels: " + $live_chans.to_s
+      Channel("#sovereigntybot").send "Live Channels: " + $live_chans.to_s
       if m == false
         force_host
       end 
@@ -132,11 +137,11 @@ class TwitchHost
         if !$live_chans.include? chan
           Channel(chan).send message
           puts "HOSTING : #{chan} -> #{target}"
-          Channel("#synthesisbot").send("HOSTING : #{chan} -> #{target}")
+          Channel("#sovereigntybot").send("HOSTING : #{chan} -> #{target}")
         end
       end
     else
-      Channel("#synthesisbot").send("No Live channels. Skipping host event.")
+      Channel("#sovereigntybot").send("No Live channels. Skipping host event.")
     end
   end
 end
